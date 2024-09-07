@@ -5,7 +5,7 @@ export const register = async (userData) => {
     const response = await authApi.post(`/register`, userData);
     return response.data;
   } catch (error) {
-    console.error(error);
+    alert(error.response.data.message);
   }
 };
 
