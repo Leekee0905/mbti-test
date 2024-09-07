@@ -1,7 +1,9 @@
 import axios from "axios";
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: "https://flat-clover-earthworm.glitch.me",
 });
 
-export default api;
+export const authApi = axios.create({
+  baseURL: "https://moneyfulpublicpolicy.co.kr",
+});
