@@ -20,9 +20,6 @@ export const AuthProvider = ({ children }) => {
       const response = await getUserProfile(token);
       if (response) {
         setUser(response);
-      } else {
-        alert("정보가져오기 실패");
-        return;
       }
     }
   };
@@ -30,7 +27,6 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     getUser();
   }, []);
-  console.log(isAuthenticated);
 
   const getLoginToken = (token) => {
     localStorage.setItem("accessToken", token);
