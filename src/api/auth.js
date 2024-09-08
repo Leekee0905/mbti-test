@@ -1,4 +1,4 @@
-import { authApi } from "./ApiInstance";
+import { authApi } from "./apiInstance";
 
 export const register = async (userData) => {
   try {
