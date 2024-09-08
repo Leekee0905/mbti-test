@@ -24,7 +24,7 @@ const Home = () => {
     navigate("/test");
   };
   return (
-    <div className="flex flex-col  items-center justify-center">
+    <div className="w-full flex flex-col items-center justify-center">
       <div className="home-header text-center w-full h-60 flex flex-col justify-center px-20 py-12">
         <h1 className="text-5xl mb-20">무료 MBTI TEST</h1>
         <span className="text-2xl">
