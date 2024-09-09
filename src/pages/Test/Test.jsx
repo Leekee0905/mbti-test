@@ -15,7 +15,7 @@ const Test = () => {
   const setQuestions = useTestStore((state) => state.setQuestions);
   const questions = useTestStore((state) => state.questions);
 
-  const { data, isSuccess } = useQuery({
+  const { data, isSuccess, isPending } = useQuery({
     queryKey: ["question"],
     queryFn: getQuestions,
     staleTime: Infinity,
@@ -45,6 +45,7 @@ const Test = () => {
     setMbtiResult(result);
     setIsSubmit(true);
   };
+  if (isPending) return <div>isPending...</div>;
 
   return (
     <div className="max-w-md mx-auto mt-10">
