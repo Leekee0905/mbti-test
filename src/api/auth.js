@@ -31,9 +31,10 @@ export const getUserProfile = async (token) => {
   } catch (error) {
     if (error.status === 401) {
       localStorage.clear();
-      redirect("/");
     }
+
     alert(error.response.data.message);
+    redirect("/");
   }
 };
 
