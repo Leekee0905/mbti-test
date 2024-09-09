@@ -14,7 +14,7 @@ const Header = () => {
   };
 
   return (
-    <header className="header flex w-full h-20 justify-between items-center px-20">
+    <header className="header flex w-full h-20 min-h-20 justify-between items-center px-20">
       <h1 className="text-2xl cursor-pointer" onClick={() => navigate("/")}>
         MBTI-TEST
       </h1>
@@ -36,7 +36,11 @@ const Header = () => {
             </li>
           </ul>
         ) : (
-          <Link to={"/login"}>로그인</Link>
+          <div className="flex justify-end w-full">
+            <Link to={"/login"} className="text-right">
+              로그인
+            </Link>
+          </div>
         )}
       </nav>
     </header>

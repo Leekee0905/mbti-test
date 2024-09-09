@@ -1,4 +1,5 @@
-import { authApi } from "./ApiInstance";
+import { redirect } from "react-router-dom";
+import { authApi } from "./apiInstance";
 
 export const register = async (userData) => {
   try {
@@ -30,6 +31,7 @@ export const getUserProfile = async (token) => {
   } catch (error) {
     if (error.status === 401) {
       localStorage.clear();
+      redirect("/");
     }
     alert(error.response.data.message);
   }

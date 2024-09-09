@@ -16,18 +16,14 @@ const AuthForm = ({ mode }) => {
   const [passwordError, setPasswordError] = useState("");
 
   const passwordValidation = (password) => {
-    return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(
-      password
-    );
+    return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password);
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "password") {
       if (!passwordValidation(value)) {
-        setPasswordError(
-          "비밀번호는 최소 8자, 문자, 숫자, 특수기호가 포함되어야합니다."
-        );
+        setPasswordError("비밀번호는 최소 8자, 문자, 숫자, 특수기호가 포함되어야합니다.");
       } else {
         setPasswordError("");
       }
@@ -95,11 +91,7 @@ const AuthForm = ({ mode }) => {
           autoComplete="false"
           required
         />
-        {passwordError ? (
-          <div className="error-box text-red-500 text-xs mb-5">
-            {passwordError}
-          </div>
-        ) : null}
+        {passwordError ? <div className="error-box text-red-500 text-xs mb-5">{passwordError}</div> : null}
         {mode === "signup" && (
           <input
             className="w-full h-1/5 p-5 mb-5"
@@ -111,9 +103,7 @@ const AuthForm = ({ mode }) => {
             required
           />
         )}
-        <button type="submit">
-          {mode === "login" ? "로그인" : "회원가입"}
-        </button>
+        <button type="submit">{mode === "login" ? "로그인" : "회원가입"}</button>
       </form>
       {mode === "signup" ? (
         <span className="text-sm">
