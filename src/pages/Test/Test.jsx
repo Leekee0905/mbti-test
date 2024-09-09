@@ -1,19 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
-import { api } from "../../api/apiInstance";
 import { useEffect, useState } from "react";
 import TestForm from "./components/TestForm";
 import useAuth from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import calculateMBTI from "../../utils/mbtiCalculator";
+import useTestStore from "../../store/useTestStore";
+import { getQuestions } from "../../api/questions";
+import { createTestResult } from "../../api/testResult";
+import TestResult from "./components/TestResult";
 
 const Test = () => {
-  const [questions, setQuestions] = useState([]);
-  const navigate = useNavigate();
+  const [isSubmit, setIsSubmit] = useState(false);
+  const [mbtiResult, setMbtiResult] = useState();
   const { user } = useAuth();
-  const getQuestions = async () => {
-    const response = await api.get("/question");
-    return response.data;
-  };
-  const { data, isPending, isSuccess, isError } = useQuery({
+  const setQuestions = useTestStore((state) => state.setQuestions);
+  const questions = useTestStore((state) => state.questions);
+
+  const { data, isSuccess } = useQuery({
     queryKey: ["question"],
     queryFn: getQuestions,
     staleTime: Infinity,
@@ -23,8 +25,10 @@ const Test = () => {
       setQuestions(data);
     }
   }, [data, isSuccess]);
+
   const handleTestSubmit = async (answers) => {
-    const result = calculateMBTI(answers);
+    const result = calculateMBTI(answers, questions);
+
     const resultData = {
       userId: user.id,
       nickname: user.nickname,
@@ -33,14 +37,23 @@ const Test = () => {
       date: new Date().toISOString(),
       visibility: true,
     };
+    if (answers.some((element) => element === null)) {
+      alert("질문에 답을 모두 해주세요!");
+      return;
+    }
     await createTestResult(resultData);
-    navigate("/results");
+    setMbtiResult(result);
+    setIsSubmit(true);
   };
 
   return (
     <div className="max-w-md mx-auto mt-10">
       <h1 className="text-2xl font-bold mb-4">MBTI 테스트</h1>
-      <TestForm onSubmit={handleTestSubmit} />
+      {isSubmit ? (
+        <TestResult result={mbtiResult} setIsSubmit={setIsSubmit} />
+      ) : (
+        <TestForm onSubmit={handleTestSubmit} />
+      )}
     </div>
   );
 };

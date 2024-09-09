@@ -1,8 +1,14 @@
-import React, { useState } from "react";
-import { questions } from "../data/questions";
+// TestForm.js
+import { useEffect, useState } from "react";
+import useTestStore from "../../../store/useTestStore";
 
 const TestForm = ({ onSubmit }) => {
-  const [answers, setAnswers] = useState(Array(questions.length).fill(null));
+  const questions = useTestStore((state) => state.questions);
+  const [answers, setAnswers] = useState([]);
+
+  useEffect(() => {
+    setAnswers(Array(questions.length).fill(null));
+  }, [questions]);
 
   const handleChange = (index, answer) => {
     const newAnswers = [...answers];
@@ -16,7 +22,10 @@ const TestForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 p-4 bg-gray-100 rounded shadow-md">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-4 p-4 bg-gray-100 rounded shadow-md"
+    >
       {questions.map((q, index) => (
         <div key={q.id} className="mb-4">
           <p className="font-semibold">{q.question}</p>
@@ -35,7 +44,10 @@ const TestForm = ({ onSubmit }) => {
           ))}
         </div>
       ))}
-      <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+      <button
+        type="submit"
+        className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+      >
         제출하기
       </button>
     </form>
