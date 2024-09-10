@@ -49,14 +49,14 @@ const pages = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      // {
-      //   path: "/mypage",
-      //   element: (
-      //     <PrivateRoute>
-      //       <MyPage />
-      //     </PrivateRoute>
-      //   ),
-      // },
+      {
+        path: "/mypage",
+        element: (
+          <PrivateRoute>
+            <MyPage />
+          </PrivateRoute>
+        ),
+      },
       {
         path: "/result",
         element: (
