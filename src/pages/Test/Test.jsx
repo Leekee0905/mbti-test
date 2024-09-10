@@ -45,11 +45,16 @@ const Test = () => {
     setMbtiResult(result);
     setIsSubmit(true);
   };
-  if (isPending) return <div>isPending...</div>;
+  if (isPending)
+    return (
+      <div className="w-4/5 h-4/5 flex flex-col items-center justify-center bg-white shadow-lg rounded-lg p-8 space-y-4">
+        질문 가져오는중...
+      </div>
+    );
 
   return (
-    <div className="max-w-md mx-auto mt-10">
-      <h1 className="text-2xl font-bold mb-4">MBTI 테스트</h1>
+    <div className="w-3/5 mx-auto mt-10">
+      <h1 className="text-2xl font-bold mb-4 text-gray-700">MBTI 테스트</h1>
       {isSubmit ? (
         <TestResult result={mbtiResult} setIsSubmit={setIsSubmit} />
       ) : (
