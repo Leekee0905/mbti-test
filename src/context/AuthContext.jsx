@@ -20,6 +20,8 @@ export const AuthProvider = ({ children }) => {
       const response = await getUserProfile(token);
       if (response) {
         setUser(response);
+      } else {
+        setIsAuthenticated(false);
       }
     }
   };
@@ -31,11 +33,18 @@ export const AuthProvider = ({ children }) => {
   const getLoginToken = (token) => {
     localStorage.setItem("accessToken", token);
     setIsAuthenticated(true);
+    getUser();
   };
 
   const logout = () => {
     localStorage.removeItem("accessToken");
     setIsAuthenticated(false);
+    setUser({
+      id: "",
+      nickname: "",
+      avatar: "",
+      success: false,
+    });
   };
 
   return (
