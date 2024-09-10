@@ -1,7 +1,5 @@
-// TestForm.js
 import { useEffect, useState } from "react";
 import useTestStore from "../../../store/useTestStore";
-
 const TestForm = ({ onSubmit }) => {
   const questions = useTestStore((state) => state.questions);
   const [answers, setAnswers] = useState([]);
