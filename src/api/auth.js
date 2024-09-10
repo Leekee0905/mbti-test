@@ -1,4 +1,3 @@
-import { redirect } from "react-router-dom";
 import { authApi } from "./apiInstance";
 
 export const register = async (userData) => {
@@ -32,9 +31,7 @@ export const getUserProfile = async (token) => {
     if (error.status === 401) {
       localStorage.clear();
     }
-
     alert(error.response.data.message);
-    redirect("/");
   }
 };
 
