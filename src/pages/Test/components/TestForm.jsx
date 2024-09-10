@@ -1,7 +1,5 @@
-// TestForm.js
 import { useEffect, useState } from "react";
 import useTestStore from "../../../store/useTestStore";
-
 const TestForm = ({ onSubmit }) => {
   const questions = useTestStore((state) => state.questions);
   const [answers, setAnswers] = useState([]);
@@ -24,7 +22,7 @@ const TestForm = ({ onSubmit }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-4 p-4 bg-gray-100 rounded shadow-md"
+      className="space-y-4 p-4 bg-white rounded-lg shadow-lg"
     >
       {questions.map((q, index) => (
         <div key={q.id} className="mb-4">

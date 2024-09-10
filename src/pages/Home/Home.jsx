@@ -26,7 +26,9 @@ const Home = () => {
   return (
     <div className="w-full flex flex-col items-center justify-center">
       <div className="home-header text-center w-full h-60 flex flex-col justify-center px-20 py-12">
-        <h1 className="text-5xl mb-20">무료 MBTI TEST</h1>
+        <h1 className="text-5xl mb-20 font-bold text-gray-700">
+          무료 MBTI TEST
+        </h1>
         <span className="text-2xl">
           자신의 성격 유형을 확인할 수 있도록 솔직하게 답변해주세요.
         </span>
@@ -38,7 +40,7 @@ const Home = () => {
       </div>
       <div className="home-button-container flex justify-center items-center w-full h-40">
         <button
-          className="w-96 h-16 border-2 rounded-3xl"
+          className="w-96 h-16 border-2 rounded-3xl bg-red-400 hover:bg-gray-200 hover:text-red-500 hover:border-black text-white"
           onClick={handleGoToText}
         >
           내 성격 알아보러 가기
