@@ -4,10 +4,10 @@ import useAuth from "../hooks/useAuth";
 import { useEffect } from "react";
 
 const Layout = () => {
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, userProfile } = useAuth();
   const navigate = useNavigate();
   useEffect(() => {
-    if (!isAuthenticated && user.id) {
+    if (!isAuthenticated && userProfile) {
       navigate("/login");
     }
   }, []);

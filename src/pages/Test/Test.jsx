@@ -11,7 +11,7 @@ import TestResult from "./components/TestResult";
 const Test = () => {
   const [isSubmit, setIsSubmit] = useState(false);
   const [mbtiResult, setMbtiResult] = useState();
-  const { user } = useAuth();
+  const { userProfile } = useAuth();
   const setQuestions = useTestStore((state) => state.setQuestions);
   const questions = useTestStore((state) => state.questions);
 
@@ -30,8 +30,8 @@ const Test = () => {
     const result = calculateMBTI(answers, questions);
 
     const resultData = {
-      userId: user.id,
-      nickname: user.nickname,
+      userId: userProfile.id,
+      nickname: userProfile.nickname,
       result,
       answers,
       date: new Date().toISOString(),
