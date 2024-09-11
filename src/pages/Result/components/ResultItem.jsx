@@ -1,13 +1,14 @@
+import { useDeleteResultQuery } from "../../../hooks/queries/result/useDeleteResultQuery";
+import { useUpdateVisibilityQuery } from "../../../hooks/queries/result/useUpdateVisibilityQuery";
 import useAuth from "../../../hooks/useAuth";
-import { useUpdateVisibilityQuery } from "../../../hooks/queries/useUpdateVisibilityQuery";
-import { useDeleteResultQuery } from "../../../hooks/queries/useDeleteResultQuery";
+
 import { MBTI_INFO } from "../../../utils/mbtiInfo";
 
 const ResultItem = ({ result }) => {
-  const { user } = useAuth();
+  const { userProfile } = useAuth();
   const { mutate: updateVisibility } = useUpdateVisibilityQuery();
   const { mutate: deleteTestResult } = useDeleteResultQuery();
-  const isOwner = result.userId === user.id;
+  const isOwner = result.userId === userProfile.id;
 
   const formattedDate = new Date(result.date).toLocaleString();
   const description =

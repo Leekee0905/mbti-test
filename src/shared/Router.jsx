@@ -10,7 +10,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import Test from "../pages/Test/Test";
 import MyPage from "../pages/MyPage/MyPage";
 import Result from "../pages/Result/Result";
-import Layout from "../layout/layout";
+import Layout from "../layout/Layout";
 import useAuth from "../hooks/useAuth";
 import { AuthProvider } from "../context/AuthContext";
 

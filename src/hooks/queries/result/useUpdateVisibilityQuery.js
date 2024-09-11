@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateTestResultVisibility } from "../../api/testResult";
+import { updateTestResultVisibility } from "../../../api/testResult";
 
 export const useUpdateVisibilityQuery = () => {
   const queryClient = useQueryClient();
