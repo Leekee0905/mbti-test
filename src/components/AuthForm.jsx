@@ -1,13 +1,11 @@
 import { useState } from "react";
-import { login, register } from "../api/auth";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+import { Link } from "react-router-dom";
+import { useLoginQuery } from "../hooks/queries/auth/useLoginQuery";
+import { useSignUpQuery } from "../hooks/queries/auth/useSignUpQuery";
 
 const AuthForm = ({ mode }) => {
-  const navigate = useNavigate();
-  const { getLoginToken } = useAuth();
-  const location = useLocation();
-  const path = location.state?.redirectedFrom || "/";
+  const { mutate: loginMutate } = useLoginQuery();
+  const { mutate: signupMutate } = useSignUpQuery();
   const [formData, setFormData] = useState({
     id: "",
     password: "",
@@ -47,22 +45,12 @@ const AuthForm = ({ mode }) => {
     }
     switch (mode) {
       case "signup": {
-        const response = await register(formData);
-        if (response.success === true) {
-          navigate("/login");
-        } else {
-          alert("회원가입실패");
-        }
+        signupMutate(formData);
         break;
       }
       case "login": {
         const { nickname, ...rest } = formData;
-        const response = await login(rest);
-        if (response.success === true) {
-          getLoginToken(response.accessToken);
-          navigate(path, { replace: true });
-          console.log("로그인!");
-        }
+        loginMutate(rest);
         break;
       }
     }

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteTestResult } from "../../api/testResult";
+import { deleteTestResult } from "../../../api/testResult";
 
 export const useDeleteResultQuery = () => {
   const queryClient = useQueryClient();

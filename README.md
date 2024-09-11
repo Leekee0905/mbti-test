@@ -1,5 +1,6 @@
 # MBTI TEST
 
+
 ## 🌟 배포 링크
 
 [MBTI TEST](https://mbti-test-sooty-three.vercel.app/)
@@ -82,12 +83,14 @@ mbtitest
 
 </details>
 
+
 ## ⚒️ 개발 환경
 
 ![](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white)
 ![](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+
 
 ## 📆 개발 기간
 
@@ -131,5 +134,6 @@ mbtitest
 json-server를 사용한 서버를 glitch에 배포 후 해당 서버에 결과물을 저장하고 출력합니다. 본인의 결과 검사는 공개여부를 설정할 수 있으며 삭제가 가능합니다.
 
 ### 💥 트러블 슈팅
+
 
 [useMutation을 사용하며 발생한 문제](https://velog.io/@leekee0905/TIL-MBTI-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0-%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%8A%88%ED%8C%85)

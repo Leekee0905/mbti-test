@@ -1,24 +1,23 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import { updateProfile } from "../../api/auth";
+import { useUpdateUserProfileQuery } from "../../hooks/queries/auth/useUpdateUserProfileQuery";
 
 const MyPage = () => {
-  const { user } = useAuth();
+  const { userProfile } = useAuth();
   const [formData, setFormData] = useState({ nickname: "" });
+  const { mutate: updateUserNicknameMutate } = useUpdateUserProfileQuery();
+
   useEffect(() => {
-    if (user) {
-      setFormData({ nickname: user.nickname });
+    if (userProfile) {
+      setFormData({ nickname: userProfile.nickname });
     }
-  }, [user]);
+  }, [userProfile]);
   const handleChangeNickname = async () => {
-    if (formData.nickname === user.nickname) {
+    if (formData.nickname === userProfile.nickname) {
       alert("닉네임을 변경해주세요!");
       return;
     }
-    const response = await updateProfile(formData);
-    if (response.success) {
-      alert(response.message);
-    }
+    updateUserNicknameMutate(formData);
   };
 
   return (

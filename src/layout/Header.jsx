@@ -3,7 +3,7 @@ import useAuth from "../hooks/useAuth";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { isAuthenticated, logout, user } = useAuth();
+  const { isAuthenticated, logout, userProfile } = useAuth();
 
   const handleLogout = () => {
     const confirmLogout = window.confirm("정말로 로그아웃 하시겠습니까?");
@@ -24,7 +24,7 @@ const Header = () => {
       <nav className="w-2/5">
         {isAuthenticated ? (
           <ul className="flex w-full justify-between font-medium">
-            <li>안녕하세요 {user.nickname}님!</li>
+            <li>안녕하세요 {userProfile?.nickname}님!</li>
             <li className="cursor-pointer" onClick={() => navigate("/mypage")}>
               마이페이지
             </li>
@@ -40,8 +40,11 @@ const Header = () => {
           </ul>
         ) : (
           <div className="flex justify-end w-full ">
-            <Link to={"/login"} className="text-right font-medium">
+            <Link to="/login" className="font-medium">
               로그인
+            </Link>
+            <Link to="/signup" className="ml-5 font-medium">
+              회원가입
             </Link>
           </div>
         )}

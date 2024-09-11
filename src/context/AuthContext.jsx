@@ -1,55 +1,36 @@
 import { createContext, useEffect, useState } from "react";
-import { getUserProfile } from "../api/auth";
+import { useGetLoginUserQuery } from "../hooks/queries/auth/useGetLoginUserQuery";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const AuthContext = createContext();
 
-const token = localStorage.getItem("accessToken");
-
 export const AuthProvider = ({ children }) => {
+  const token = localStorage.getItem("accessToken");
+  const queryClient = useQueryClient();
+  const { data: userProfile, isError } = useGetLoginUserQuery();
   const [isAuthenticated, setIsAuthenticated] = useState(!!token);
-  const [user, setUser] = useState({
-    id: "",
-    nickname: "",
-    avatar: "",
-    success: false,
-  });
-
-  const getUser = async () => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      const response = await getUserProfile(token);
-      if (response) {
-        setUser(response);
-      } else {
-        setIsAuthenticated(false);
-      }
-    }
-  };
 
   useEffect(() => {
-    getUser();
-  }, []);
+    if (isError) {
+      queryClient.invalidateQueries(["userProfile"]);
+      setIsAuthenticated(false);
+    }
+  }, [isError]);
 
   const getLoginToken = (token) => {
     localStorage.setItem("accessToken", token);
     setIsAuthenticated(true);
-    getUser();
   };
 
   const logout = () => {
     localStorage.removeItem("accessToken");
     setIsAuthenticated(false);
-    setUser({
-      id: "",
-      nickname: "",
-      avatar: "",
-      success: false,
-    });
+    queryClient.invalidateQueries(["userProfile"]);
   };
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, getLoginToken, logout, user }}
+      value={{ isAuthenticated, getLoginToken, logout, userProfile }}
     >
       {children}
     </AuthContext.Provider>
