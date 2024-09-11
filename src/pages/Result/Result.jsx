@@ -1,4 +1,4 @@
-import { useResultQuery } from "../../hooks/queries/useResultQuery";
+import { useResultQuery } from "../../hooks/queries/result/useResultQuery";
 import ResultList from "./components/ResultList";
 
 const Result = () => {
